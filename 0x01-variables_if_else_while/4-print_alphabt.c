@@ -13,9 +13,11 @@ int main(void)
 	{
 		if (lowercase == 'q' || lowercase == 'e')
 		{
+			lowercase++;
 			continue;
 		}
 		putchar(lowercase);
+		lowercase++;
 	}
 	putchar('\n');
 
