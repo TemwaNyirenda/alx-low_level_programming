@@ -7,40 +7,42 @@
  */
 int main(void)
 {
-	unsigned long count, bil = 1000000000,
-	      carryover_first_bil = 0, carryover_second_bil = 0,
-	      fib_1_first_bil = 1, fib_1_second_bil = 0, fib_1_third_bil = 0,
-	      fib_2_first_bil = 2, fib_2_second_bil = 0, fib_2_third_bil = 0,
-	      fib_3_first_bil = 0, fib_3_second_bil = 0, fib_3_third_bil = 0;
+	unsigned long count, bil = 1000000000, carry1stbil, carry2ndbil,
+	f1_1stbil = 1, f1_2ndbil = 0, f1_3rdbil = 0, f2_1stbil = 2,
+	f2_2ndbil = 0, f2_3rdbil = 0, f3_1stbil = 0, f3_2ndbil = 0,
+       	f3_3rdbil = 0;
 
 	for (count = 1; count <= 98; count++)
 	{
-		carryover_first_bil = 0;
-		carryover_second_bil = 0;
+		carry1stbil = 0;
+		carry2ndbil = 0;
 
-		if (fib_1_third_bil > 0)
-			printf("%lu", fib_1_third_bil);
-		if (fib_1_second_bil > 0)
-			printf("%09lu", fib_1_second_bil);
-		printf("%09lu", fib_1_first_bil);
+		if (f1_3rdbil > 0)
+			printf("%lu", f1_3rdbil);
+		if (f1_2ndbil > 0 && f1_2ndbil == 0)
+			printf("%09lu", f1_2ndbil);
+		else if (f1_2ndbil > 0)
+			printf("%lu", f1_2ndbil);
+		if (f1_2ndbil > 0)
+			printf("%09lu", f1_1stbil);
+		else
+			printf("%lu", f1_1stbil);
 		if (count != 98)
 			printf(", ");
 
-		fib_3_first_bil = fib_1_first_bil + fib_2_first_bil;
-		if (fib_3_first_bil > bil)
-			carryover_first_bil = fib_3_first_bil / bil;
-		fib_3_second_bil = fib_1_second_bil + fib_2_second_bil
-			+ carryover_first_bil;
-		if (fib_3_second_bil > bil)
-			carryover_second_bil = fib_3_second_bil / bil;
-		fib_3_third_bil = fib_1_third_bil + fib_2_third_bil
-			+ carryover_second_bil;
-		fib_1_first_bil = fib_2_first_bil;
-		fib_1_second_bil = fib_2_second_bil;
-		fib_1_third_bil = fib_2_third_bil;
-		fib_2_first_bil = fib_3_first_bil % bil;
-		fib_2_second_bil = fib_3_second_bil % bil;
-		fib_2_third_bil = fib_3_third_bil;
+		f3_1stbil = f1_1stbil + f2_1stbil;
+		if (f3_1stbil > bil)
+			carry1stbil = f3_1stbil / bil;
+		f3_2ndbil = f1_2ndbil + f2_2ndbil + carry1stbil;
+		if (f3_2ndbil > bil)
+			carry2ndbil = f3_2ndbil / bil;
+		f3_3rdbil = f1_3rdbil + f2_3rdbil + carry2ndbil;
+		f1_1stbil = f2_1stbil;
+		f1_2ndbil = f2_2ndbil;
+		f1_3rdbil = f2_3rdbil;
+		f2_1stbil = f3_1stbil % bil;
+		f2_2ndbil = f3_2ndbil % bil;
+		f2_3rdbil = f3_3rdbil;
 	}
 	printf("\n");
 	return (0);
