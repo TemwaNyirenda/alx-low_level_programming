@@ -10,7 +10,7 @@ int main(void)
 	unsigned long count, bil = 1000000000, carry1stbil, carry2ndbil,
 	f1_1stbil = 1, f1_2ndbil = 0, f1_3rdbil = 0, f2_1stbil = 2,
 	f2_2ndbil = 0, f2_3rdbil = 0, f3_1stbil = 0, f3_2ndbil = 0,
-       	f3_3rdbil = 0;
+	f3_3rdbil = 0;
 
 	for (count = 1; count <= 98; count++)
 	{
