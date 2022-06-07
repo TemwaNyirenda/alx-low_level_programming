@@ -15,8 +15,11 @@ int main(void)
 		{
 			sum += fib_1;
 		}
+		fib_1 = fib_2;
+		fib_2 = fib_3;
+		fib_3 = fib_1 + fib_2;
 	}
-	printf("%d\n", sum);
+	printf("%lu\n", sum);
 
 	return (0);
 }
