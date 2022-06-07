@@ -19,7 +19,7 @@ int main(void)
 		carryover_second_bil = 0;
 
 		if (fib_1_third_bil > 0)
-			printf("%09lu", fib_1_third_bil);
+			printf("%lu", fib_1_third_bil);
 		if (fib_1_second_bil > 0)
 			printf("%09lu", fib_1_second_bil);
 		printf("%09lu", fib_1_first_bil);
