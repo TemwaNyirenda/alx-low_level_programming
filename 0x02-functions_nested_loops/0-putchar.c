@@ -3,7 +3,7 @@
 /**
  * main - prints a string using _putchar
  *
- * Description: This function prints the string "_putchar\n" 
+ * Description: This function prints the string "_putchar\n"
  * using function _putchar
  *
  * Return: 0
