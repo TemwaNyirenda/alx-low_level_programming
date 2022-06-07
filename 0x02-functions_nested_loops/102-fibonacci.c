@@ -13,7 +13,12 @@ int main(void)
 	{
 		fib_3 = fib_1 + fib_2;
 
-		printf("%lu, ", fib_1);
+		printf("%lu", fib_1);
+
+		if (count != 50)
+		{
+			printf(", ");
+		}
 
 		fib_1 = fib_2;
 		fib_2 = fib_3;
