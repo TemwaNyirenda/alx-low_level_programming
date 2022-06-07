@@ -9,7 +9,7 @@ int main(void)
 {
 	unsigned long fib_1 = 1, fib_2 = 2, fib_3, count;
 
-	for (count = 0; count <= 50; count++)
+	for (count = 1; count <= 50; count++)
 	{
 		fib_3 = fib_1 + fib_2;
 
