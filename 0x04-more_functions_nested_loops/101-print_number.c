@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdio.h>
 
 void print_number_continued(int abs_n, int remainder);
 
@@ -28,12 +29,10 @@ void print_number(int n)
 		}
 	}
 	if (n < 0)
-	{
 		remainder = remainder * -1;
-		abs_n = n * -1;
-	}
-	else
-		abs_n = n;
+
+	abs_n = remainder;
+
 	if (abs_n >= 100000000)
 	{
 		_putchar(remainder / 100000000 + '0');
@@ -44,12 +43,13 @@ void print_number(int n)
 		_putchar(remainder / 10000000 + '0');
 		remainder = remainder % 10000000;
 	}
+
 	print_number_continued(abs_n, remainder);
 }
 
 /**
  * print_number_continued - continues function bc 40 line restriction
- * @abs_n: the absolute value of n
+ * @abs_n: the absolute value of n % 1000000000
  * @remainder: remaining digits to be printed
  *
  * Return: void - nothing
