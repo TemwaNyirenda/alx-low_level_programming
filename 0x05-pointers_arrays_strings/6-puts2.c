@@ -8,9 +8,11 @@
  */
 void puts2(char *str)
 {
-	int index;
+	int index, index2;
 
-	for (index = 0; *(str + index) != '\0'; index = index + 2)
+	for (index = 0, index2 = 0;
+		*(str + index) != '\0' && *(str + index2) != '\0';
+		index = index + 2, index2 = index - 1)
 	{
 		_putchar(*(str + index));
 	}
