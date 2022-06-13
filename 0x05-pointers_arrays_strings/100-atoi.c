@@ -18,15 +18,17 @@ int _atoi(char *s)
 		if (*(s + index) >= '0' && *(s + index) <= '9')
 		{
 			num *= 10;
-			num += (*(s + index) - '0');
+			if (num >= 0)
+				num += (*(s + index) - '0');
+			else
+				num -= (*(s + index) - '0');
+			if (minus_count % 2 != 0 && num >= 0)
+				num = -num;
 			if (!(*(s + index + 1) >= '0' &&
 				*(s + index + 1) <= '9'))
 				break;
 		}
 	}
-
-	if (minus_count % 2 != 0)
-		num = -num;
 
 	return (num);
 }
