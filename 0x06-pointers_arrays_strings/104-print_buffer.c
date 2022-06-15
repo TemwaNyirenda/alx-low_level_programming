@@ -25,7 +25,7 @@ void print_buffer(char *b, int size)
 		lines_to_be_printed = size / 10 + 1;
 	else
 		lines_to_be_printed = size / 10;
-	for (line_num = 0; ; line_num += 10)
+	for (line_num = 0; size > 0; line_num += 10)
 	{
 		printf("%08x: ", line_num);
 		for (byte_num = line_num; byte_num < line_num + 10 && byte_num < size;
@@ -56,4 +56,6 @@ void print_buffer(char *b, int size)
 		if (byte_num >= size)
 			break;
 	}
+	if (size <= 0)
+		printf("\n");
 }
