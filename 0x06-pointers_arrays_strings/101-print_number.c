@@ -17,18 +17,22 @@ void print_number(int n)
 	{
 		top = remainder / bil;
 
-		if (top >= 0)
+		if (top == 0)
 		{
-			if (top == 0 && n >= bil * 10)
+			if (n >= 0 && n >= bil * 10)
 			{
 				_putchar(top + '0');
 			}
-			else if (top != 0)
+			else if (n < 0 && n <= -bil * 10)
 			{
 				_putchar(top + '0');
 			}
 		}
-		else
+		else if (top > 0)
+		{
+			_putchar(top + '0');
+		}
+		else if (top < 0)
 			_putchar(-top + '0');
 
 	}
