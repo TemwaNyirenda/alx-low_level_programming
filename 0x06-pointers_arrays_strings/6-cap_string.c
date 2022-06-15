@@ -2,8 +2,8 @@
 
 /**
  * cap_string - capitalized all words in a string
- * 	Separators of words: space, tabulation, new line, ',', ';', '.', '!',
- * 	'?', '"', '(', ')', '{', and '}'
+ *	Separators of words: space, tabulation, new line, ',', ';', '.', '!',
+ *	'?', '"', '(', ')', '{', and '}'
  * @str: string used for operation
  *
  * Return: the string with capitalized words
