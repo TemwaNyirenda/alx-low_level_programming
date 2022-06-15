@@ -28,8 +28,8 @@ void print_buffer(char *b, int size)
 	for (line_num = 0; size > 0; line_num += 10)
 	{
 		printf("%08x: ", line_num);
-		for (byte_num = line_num; byte_num < line_num + 10 && byte_num < size;
-				byte_num++)
+		for (byte_num = line_num; byte_num < line_num + 10 &&
+				byte_num < size; byte_num++)
 		{
 			if (isprint(b[byte_num]) == 0)
 				printf("%02x", b[byte_num]);
@@ -39,15 +39,15 @@ void print_buffer(char *b, int size)
 				printf(" ");
 		}
 		if ((line_num / 10 == lines_to_be_printed - 1) && remainder != 0)
-			while (remainder > 0)
+			for (;remainder > 0 && byte_num < size; byte_num++)
 			{
 				printf("  ");
 				if (remainder % 2 != 0)
 					printf(" ");
 				remainder--;
 			}
-		for (byte_num = line_num; byte_num < line_num + 10 && byte_num < size;
-				byte_num++)
+		for (byte_num = line_num; byte_num < line_num + 10 &&
+				byte_num < size; byte_num++)
 			if (isprint(b[byte_num]) == 0)
 				printf(".");
 			else
