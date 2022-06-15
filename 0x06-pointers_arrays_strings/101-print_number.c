@@ -13,7 +13,7 @@ void print_number(int n)
 	if (n < 0)
 		_putchar('-');
 
-	for (bil = 1000000000; bil >= 1; remainder %= bil, bil /= 10)
+	for (bil = 1000000000; bil >= 10; remainder %= bil, bil /= 10)
 	{
 		top = remainder / bil;
 
@@ -35,4 +35,3 @@ void print_number(int n)
 		if (top == 0 && n < 10)
 			_putchar('0');
 }
-
