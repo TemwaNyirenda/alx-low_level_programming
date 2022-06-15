@@ -38,8 +38,9 @@ void print_buffer(char *b, int size)
 			if (byte_num % 2 != 0)
 				printf(" ");
 		}
-		if ((line_num / 10 == lines_to_be_printed - 1) && remainder != 0)
-			for (;remainder > 0; remainder--)
+		if ((line_num / 10 == lines_to_be_printed - 1) &&
+				remainder != 0 || remainder != 10)
+			for (; remainder > 0; remainder--)
 			{
 				printf("  ");
 				if (remainder % 2 != 0)
