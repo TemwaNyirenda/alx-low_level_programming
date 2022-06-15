@@ -39,12 +39,11 @@ void print_buffer(char *b, int size)
 				printf(" ");
 		}
 		if ((line_num / 10 == lines_to_be_printed - 1) && remainder != 0)
-			for (;remainder > 0 && byte_num < size; byte_num++)
+			for (;remainder > 0; remainder--)
 			{
 				printf("  ");
 				if (remainder % 2 != 0)
 					printf(" ");
-				remainder--;
 			}
 		for (byte_num = line_num; byte_num < line_num + 10 &&
 				byte_num < size; byte_num++)
