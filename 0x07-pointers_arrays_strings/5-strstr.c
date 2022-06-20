@@ -12,7 +12,7 @@
 char *_strstr(char *haystack, char *needle)
 {
 	int index_h, index_n, count = 0;
-	char *ptr_first_occur;
+/*	char *ptr_first_occur;*/
 
 	if (needle[0] == '\0')
 		return (haystack);
@@ -26,9 +26,9 @@ char *_strstr(char *haystack, char *needle)
 				if (needle[index_n] == '\0')
 				{
 
-					ptr_first_occur =
-						&haystack[index_h - count];
-					return (0);
+				/*	ptr_first_occur =
+						&haystack[index_h - count];*/
+					return ("0");
 				}
 				if (haystack[index_h] == needle[index_n])
 					continue;
