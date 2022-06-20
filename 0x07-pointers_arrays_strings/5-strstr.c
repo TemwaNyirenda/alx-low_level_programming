@@ -28,7 +28,7 @@ char *_strstr(char *haystack, char *needle)
 
 					ptr_first_occur =
 						&haystack[index_h - count];
-					return (ptr_first_occur);
+					return (0);
 				}
 				if (haystack[index_h] == needle[index_n])
 					continue;
