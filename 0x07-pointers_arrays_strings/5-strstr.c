@@ -1,5 +1,6 @@
 #include "main.h"
 #include <stddef.h>
+#include <stdio.h>
 
 /**
  * _strstr - locates first occurance of the string needle in string haystack
@@ -12,7 +13,6 @@
 char *_strstr(char *haystack, char *needle)
 {
 	int index_h, index_n, count = 0;
-/*	char *ptr_first_occur;*/
 
 	if (needle[0] == '\0')
 		return (haystack);
@@ -24,12 +24,7 @@ char *_strstr(char *haystack, char *needle)
 			for (index_n = 0; ; count++, index_h++, index_n++)
 			{
 				if (needle[index_n] == '\0')
-				{
-
-				/*	ptr_first_occur =
-						&haystack[index_h - count];*/
-					return ("0");
-				}
+					return (haystack + (index_h - count));
 				if (haystack[index_h] == needle[index_n])
 					continue;
 				else
