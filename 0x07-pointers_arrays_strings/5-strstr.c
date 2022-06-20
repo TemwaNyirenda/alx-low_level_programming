@@ -1,60 +1,43 @@
 #include "main.h"
-
-int _strlen(char *s);
+#include <stddef.h>
+#include <stdio.h>
 
 /**
- *  * _strstr - searches first string for the first occurance of the substring
- *   * @haystack: the string to be searched
- *    * @needle: the substring to be searched for
- *     *
- *      * Return: the pointer to the beginning of the located string
- *       * or NULL if no substring
- *        */
+ * _strstr - locates first occurance of the string needle in string haystack
+ * @haystack: string that will be checked for substring
+ * @needle: the string that will be used to find in string haystack
+ *
+ * Return: a pointer to the first occurance of the substring,
+ *	if no occurance, return NULL
+ */
 char *_strstr(char *haystack, char *needle)
 {
-		int n = 0;
-			int m = 0;
-				int len_needle = 0;
+	int index_h, index_n, count = 0;
+	char *ptr_first_occur;
 
-					len_needle = _strlen(needle) - 1;
-						if (_strlen(needle) == 0)
-								{
-											return (haystack);
-												}
-							for (n = 0; *(haystack + n) != '\0'; n++)
-									{
-												for (m = 0; *(needle + m) != '\0'; m++)
-															{
-																			while (*(haystack + n) == *(needle + m))
-																							{
-																												n++;
-																																m++;
-																																				if ((m == len_needle) &&
-																																										*(haystack + n) == *(needle + len_needle))
-																																									{
-																																															return (haystack + (n - len_needle));
-																																																			}
-																																							}
-																					}
-													}
-								return ('\0');
-}
+	if (needle[0] == '\0')
+		return (haystack);
 
-/**
- *  * _strlen - calculates the length of a string
- *   * @s: The string that the length will be calculated on
- *    *
- *     * Return: The length of the string
- *      */
-int _strlen(char *s)
-{
-		int n = 0;
+	for (index_h = 0; haystack[index_h] != '\0'; index_h++)
+	{
+		if (haystack[index_h] == needle[0])
+		{
+			for (index_n = 0; ; count++, index_h++, index_n++)
+			{
+				if (needle[index_n + 1] == '\0'
+				&& (haystack[index_h] == needle[index_n]))
+				{
+					ptr_first_occur =
+						&haystack[index_h - count];
+					return (ptr_first_occur);	
+				}
+				if (haystack[index_h] == needle[index_n])
+					continue;
+				else
+					break;
+			}
+		}
+	}
 
-			while (*s != '\0')
-					{
-								s++;
-										n++;
-											}
-
-				return (n);
+	return (NULL);
 }
