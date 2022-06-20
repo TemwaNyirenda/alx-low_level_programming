@@ -14,6 +14,9 @@ char *_strstr(char *haystack, char *needle)
 	int index_h, index_n, count = 0;
 	char *ptr_first_occur;
 
+	if (needle[0] == '\0')
+		return (haystack);
+
 	for (index_h = 0; haystack[index_h] != '\0'; index_h++)
 	{
 		if (haystack[index_h] == needle[0])
