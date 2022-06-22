@@ -22,7 +22,7 @@ int _sqrt_recursion(int n)
  */
 int find_sqrt(int n, int sqrt)
 {
-	if (sqrt < 0)
+	if (n < 0 || sqrt > n)
 		return (-1);
 	if (sqrt * sqrt == n)
 		return (sqrt);
