@@ -10,7 +10,7 @@ int find_sqrt(int n, int sqrt);
  */
 int _sqrt_recursion(int n)
 {
-	return (find_sqrt(n, n));
+	return (find_sqrt(n, 0));
 }
 
 /**
@@ -27,5 +27,5 @@ int find_sqrt(int n, int sqrt)
 	if (sqrt * sqrt == n)
 		return (sqrt);
 
-	return (find_sqrt(n, sqrt - 1));
+	return (find_sqrt(n, sqrt + 1));
 }
