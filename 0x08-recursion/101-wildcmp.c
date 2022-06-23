@@ -1,7 +1,6 @@
 #include "main.h"
- #include <stdio.h> 
 
-int iterate_s1 (char *s1, char *s2, int index_s1, int index_s2);
+int iterate_s1(char *s1, char *s2, int index_s1, int index_s2);
 int find_match(char *s1, char *s2, int index_s1, int index_s2, int after_ast);
 int check_astericks(char *s2, int index_s2);
 int _strlen_recursion(char *s);
@@ -18,8 +17,6 @@ int wildcmp(char *s1, char *s2)
 	int s1_len = _strlen_recursion(s1);
 	int s2_len = _strlen_recursion(s2);
 
-	printf("\t\t NEW TEST\n"); 
-
 	if (s1_len == 0 && s2_len == 0)
 		return (1);
 
@@ -27,25 +24,30 @@ int wildcmp(char *s1, char *s2)
 	if (find_match(s1, s2, 0, 0, 0) == 1)
 		return (1);
 	else
-		return (4);
+		return (0);
 
 }
 
-
-
-int iterate_s1 (char *s1, char *s2, int index_s1, int index_s2)
-{	
+/**
+ * iterate_s1 - iterates through s1 to see if there is a match later in string
+ * @s1: string one
+ * @s2: string two
+ * @index_s1: current position in string one
+ * @index_s2: current position in string two
+ *
+ * Return: new position in string one
+ */
+int iterate_s1(char *s1, char *s2, int index_s1, int index_s2)
+{
 	if (*(s1 + index_s1) == '\0')
 		return (-1);
 	if (*(s1 + index_s1) == *(s2 + index_s2))
 	{
-		printf("\titerate is returning to find_match\ts2 is %c  at %d \t s1 is %c at %d\n", *(s2 + index_s2), index_s2, s1[index_s1], index_s1);
 		return (index_s1);
 	}
 	else
 	{
-		printf("\titerate is going through another iterate\ts2 is %c  at %d \t s1 is %c at %d\n", *(s2 + index_s2), index_s2, s1[index_s1], index_s1);
-		return(iterate_s1 (s1, s2, index_s1 + 1, index_s2));
+		return (iterate_s1(s1, s2, index_s1 + 1, index_s2));
 	}
 }
 
@@ -53,6 +55,9 @@ int iterate_s1 (char *s1, char *s2, int index_s1, int index_s2)
  * find_match - matches the chars in s1 and s2
  * @s1: first string
  * @s2: second string
+ * @index_s1: current position in string s1
+ * @index_s2: current position in string s2
+ * @after_ast: storing the index for after when initial astericks were removed
  *
  * Return: 1 if strings are considered identical, 0 otherwise
  */
@@ -71,23 +76,19 @@ int find_match(char *s1, char *s2, int index_s1, int index_s2, int after_ast)
 		{
 			index_s2 = asterick_check;
 			after_ast = asterick_check; /* store index after ast */
-			printf("\t index_s2 is %d which should = store_index which is %d\n", index_s2, after_ast);
-
-			printf("\ts1 at this point is %c  at %d\n", *(s1 + index_s1), index_s1); 
-			printf("\ts2 at this point is %c  at %d\n", *(s2 + index_s2), index_s2); 
 		}
 	}
 	if (*(s1 + index_s1) == '\0' && *(s2 + index_s2) == '\0')
 		return (1);
 
 	if (*(s1 + index_s1) == *(s2 + index_s2))
+	{
 		return (find_match(s1, s2, index_s1 + 1, index_s2 + 1, after_ast));
+	}
 	else
 	{
-		printf("\tthey don't match \ts2 is %c  at %d \t s1 is %c at %d\n", *(s2 + index_s2), index_s2, s1[index_s1], index_s1); 
 		if (*(s2  + index_s2 - 1) == '*')
 		{
-			printf("but previous s2 was an *\n");
 			s1_iterate = iterate_s1(s1, s2, index_s1, index_s2);
 			if (s1_iterate == -1)
 			{
@@ -101,9 +102,6 @@ int find_match(char *s1, char *s2, int index_s1, int index_s2, int after_ast)
 		}
 		else
 		{
-			printf("\tfind_match is restarting s2 after asterick\n");
-			printf("\t store_index = %d\n", after_ast);
-			
 			s1_iterate = iterate_s1(s1, s2, index_s1, after_ast);
 
 			if (s1_iterate == -1)
@@ -120,12 +118,6 @@ int find_match(char *s1, char *s2, int index_s1, int index_s2, int after_ast)
 	}
 
 	return (0);
-
-
-	
-
-
-
 }
 
 
@@ -144,12 +136,10 @@ int check_astericks(char *s2, int index_s2)
 		return (-1); /* -1 bc returns index_s aswell, no confusion */
 	if (*(s2 + index_s2) == '*')
 	{
-		printf ("\ts is a *, look %c at %d\n", *(s2 + index_s2), index_s2); 
-		return(check_astericks(s2, index_s2 + 1));
+		return (check_astericks(s2, index_s2 + 1));
 	}
 	else
 	{
-		printf ("\ts is not a *, it's %c  at %d\n", *(s2 + index_s2), index_s2); 
 		return (index_s2);
 	}
 }
