@@ -27,7 +27,8 @@ char *argstostr(int ac, char **av)
 		totalStrLen += _strlen(av[i]) + 1;
 	}
 
-	ptr = malloc(sizeof(char) * totalStrLen);
+	ptr = malloc(sizeof(char) * totalStrLen + 1);
+	/* +1 for final null teminator */
 	if (ptr == NULL)
 	{
 		return (NULL);
@@ -41,6 +42,8 @@ char *argstostr(int ac, char **av)
 		}
 		ptr[k] = '\n'; /* add '\n' after each argument */
 	}
+
+	ptr[k] = '\0';
 
 	return (ptr);
 }
