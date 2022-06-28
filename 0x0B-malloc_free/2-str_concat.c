@@ -30,10 +30,12 @@ char *str_concat(char *s1, char *s2)
 		ptr[i] = s1[j];
 	}
 
-	for (j = 0; j <= len_s2; i++, j++) /* will copy null terminator here */
+	for (j = 0; j < len_s2; i++, j++)
 	{
 		ptr[i] = s2[j];
 	}
+
+	ptr[i] = '\0';
 
 	return (ptr);
 }
