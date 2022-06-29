@@ -17,7 +17,7 @@ char **strtow(char *str)
 	int i, j, k = 0, *ptr2strlen, num_of_words;
 	char **ptr2str;
 
-	if (str == NULL || _strlen(str) == 0)
+	if (str == NULL || _strlen(str) == 0 || count_words(str) == 0)
 		return (NULL);
 	num_of_words = count_words(str); /* number of words in string from 1 */
 	ptr2strlen = _strlen_array(str); /* an array of the strlen of words */
@@ -73,6 +73,8 @@ int count_words(char *str)
 			{ /* to take account of leading spaces in string */
 				while (str[k] == ' ')
 					k++;
+				if (str[k] == '\0')
+					return (0);
 			}
 
 			if (str[k] == ' ')
@@ -102,7 +104,7 @@ int *_strlen_array(char *str)
 	if (ptr2strlen == NULL)
 		return (NULL);
 
-	for (i = 0; i <= count_words(str) && str[k] != '\0'; i++)
+	for (i = 0; i <= count_words(str); i++)
 	{
 		len = 0;
 		for (; str[k] != '\0'; k++)
@@ -121,8 +123,6 @@ int *_strlen_array(char *str)
 			}
 			ptr2strlen[i] = len++;
 		}
-		if (ptr2strlen[i] == 0)
-			i--;
 	}
 
 	return (ptr2strlen);
