@@ -30,7 +30,7 @@ char **strtow(char *str)
 
 	for (i = 0; i < num_of_words; i++)
 	{
-		ptr2str[i] = malloc(sizeof(char) * (ptr2strlen[i] + 2));
+		ptr2str[i] = malloc(sizeof(char) * (ptr2strlen[i] + 1));
 		/* +2 because strlen starts from 0 & incl. null terminator */
 		if (ptr2str[i] == NULL)
 		{
