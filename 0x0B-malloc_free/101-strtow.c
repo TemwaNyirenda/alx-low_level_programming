@@ -102,7 +102,7 @@ int *_strlen_array(char *str)
 	if (ptr2strlen == NULL)
 		return (NULL);
 
-	for (i = 0; i <= count_words(str); i++)
+	for (i = 0; i <= count_words(str) && str[k] != '\0'; i++)
 	{
 		len = 0;
 		for (; str[k] != '\0'; k++)
@@ -121,6 +121,8 @@ int *_strlen_array(char *str)
 			}
 			ptr2strlen[i] = len++;
 		}
+		if (ptr2strlen[i] == 0)
+			i--;
 	}
 
 	return (ptr2strlen);
