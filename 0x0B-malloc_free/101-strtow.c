@@ -25,13 +25,13 @@ char **strtow(char *str)
 	if (ptr2strlen == NULL)
 		return (NULL);
 	/* memory allocation to pointer to strings (the rows) */
-	ptr2str = malloc(sizeof(char *) * (num_of_words + 1));
-	/* +1 to incl final pointer to NULL */
+	ptr2str = malloc(sizeof(char *) * (num_of_words));
+	/* +1 to incl final pointer to NULL -> WRONG? too much memory*/
 
 	for (i = 0; i < num_of_words; i++)
 	{
-		ptr2str[i] = malloc(sizeof(char) * (ptr2strlen[i] + 1));
-		/* +2 because strlen starts from 0 & incl. null terminator */
+		ptr2str[i] = malloc(sizeof(char) * (ptr2strlen[i]));
+/* +2 bc strlen from 0 & incl. null terminator -> WRONG? too much memory */
 		if (ptr2str[i] == NULL)
 		{
 			for (; i >= 0; i--) /* free allocation to strings */
