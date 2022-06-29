@@ -14,7 +14,7 @@ int _strlen(char *str);
  */
 char **strtow(char *str)
 {
-	int i, j, k = 0, *ptr2strlen, num_of_words;
+	int i, j, k = 0, *ptr2strlen, num_of_words, strlen;
 	char **ptr2str;
 
 	if (str == NULL || _strlen(str) == 0 || count_words(str) == 0)
@@ -25,12 +25,12 @@ char **strtow(char *str)
 	if (ptr2strlen == NULL)
 		return (NULL);
 	/* memory allocation to pointer to strings (the rows) */
-	ptr2str = malloc(sizeof(char *) * (num_of_words));
+	ptr2str = malloc(sizeof(char *) * (num_of_words + 1));
 	/* +1 to incl final pointer to NULL -> WRONG? too much memory*/
 
 	for (i = 0; i < num_of_words; i++)
 	{
-		ptr2str[i] = malloc(sizeof(char) * (ptr2strlen[i]));
+		ptr2str[i] = malloc(sizeof(char) * (ptr2strlen[i] + 2));
 /* +2 bc strlen from 0 & incl. null terminator -> WRONG? too much memory */
 		if (ptr2str[i] == NULL)
 		{
