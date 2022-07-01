@@ -3,10 +3,11 @@
 #include <stddef.h>
 #include <stdio.h>
 
+void error_message(void);
 int is_only_digits(char *str);
 int _strlen(char *str);
 int convert_char_to_int(char c);
-void error_message(void);
+int is_num_zero(int *array, int len);
 void multiply_int_array(int *array1, int *array2, int len1, int len2);
 int *_memset(int *s, int b, unsigned int n);
 
@@ -21,19 +22,11 @@ int main(int argc, char *argv[])
 {
 	int j, k, *ptr_num1, *ptr_num2;
 	if (argc != 3)
-	{
-		_putchar('1');
 		error_message();
-	}
 
 	for (j = 1; j < argc; j++)
-	{
 		if (is_only_digits(argv[j]) == 1)
-		{
-			_putchar('2');
 			error_message();
-		}
-	}
 
 	ptr_num1 = malloc(sizeof(int) * _strlen(argv[1]));
 	if (ptr_num1 == NULL)
@@ -43,36 +36,20 @@ int main(int argc, char *argv[])
 		error_message();
 
 	for (k = 0; k < _strlen(argv[1]); k++)
-	{
 		ptr_num1[k] = convert_char_to_int(argv[1][k]);
-	}
-	/* printing test */
-/*	for (k = 0; k < _strlen(argv[1]); k++)
-	{
-		_putchar(ptr_num1[k] + 48); // ptr_num1 is int so + 48 
-	}
-*/
 
 	for (k = 0; k < _strlen(argv[2]); k++)
-	{
 		ptr_num2[k] = convert_char_to_int(argv[2][k]);
-	}
-	/* printing test */
-/*	for (k = 0; k < _strlen(argv[1]); k++)
+
+	if (is_num_zero(ptr_num1, _strlen(argv[1])) == 0 ||
+			is_num_zero(ptr_num2, _strlen(argv[2])) == 0)
 	{
-		_putchar(ptr_num1[k] + 48); // ptr_num1 is int so + 48 
+		_putchar(0 + 48);
+		_putchar('\n');
 	}
-*/
-/*	if (_strlen(argv[1]) > _strlen(argv[2]))
-		len = _strlen(argv[1]) + 1;
 	else
-		len = _strlen(argv[2]) + 1;
-*/
-
-	multiply_int_array(ptr_num1, ptr_num2, _strlen(argv[1]),
+		multiply_int_array(ptr_num1, ptr_num2, _strlen(argv[1]),
 			_strlen(argv[2]));
-
-
 
 	free(ptr_num1);
 	free(ptr_num2);
@@ -160,6 +137,26 @@ int convert_char_to_int(char c)
 		return (8);
 	else
 		return (9);
+}
+
+/**
+ * is_num_zero - checks if an array of int is all zero
+ * @array: array to be checked
+ * @len: length of the array
+ *
+ * Return: 0 if it's all zeroes, 1 otherwise
+ */
+int is_num_zero(int *array, int len)
+{
+	int i;
+
+	for(i = 0; i < len; i++)
+	{
+		if (array[i] != 0)
+			return (1);
+	}
+
+	return (0);
 }
 
 /**
