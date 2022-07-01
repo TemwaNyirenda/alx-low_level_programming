@@ -175,9 +175,13 @@ int convert_char_to_int(char c)
 void multiply_int_array(int *array1, int *array2, int len1, int len2)
 {
 
-	int i, j, k, l, mul, sum = 0, carry_over = 0, mul_c_o, col = len1 * 2;
-	/* col is columns in 2D array */
+	int i, j, k, l, mul, sum = 0, carry_over = 0, mul_c_o, col;
 	int **ptr2mul, *ptr2mul_sum; 
+
+	if (len1 > len2) /* col is columns in 2D array */
+		col = len1 * 2;
+	else
+		col = len2 * 2;
 		
 	ptr2mul_sum = malloc(sizeof(int) * col);
 	if (ptr2mul_sum == NULL)
