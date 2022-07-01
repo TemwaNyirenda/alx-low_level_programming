@@ -266,6 +266,13 @@ void multiply_int_array(int *array1, int *array2, int len1, int len2)
 		_putchar(ptr2mul_sum[l] + 48);
 	}
 	_putchar('\n');
+	
+	free(ptr2mul_sum);
+	free(ptr2mul);
+	for (i = 0; i < len2; i++)
+	{
+		free(ptr2mul[i]);
+	}
 }
 
 /**
