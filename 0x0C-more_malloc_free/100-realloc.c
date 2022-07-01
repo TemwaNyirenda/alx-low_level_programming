@@ -16,7 +16,6 @@ char *_memcpy(char *dest, char *src, unsigned int n);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
 	void *new_ptr;
-	int i;
 
 	if (new_size == old_size)
 		return (ptr);
@@ -52,9 +51,7 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 		if (new_ptr == NULL)
 			return (NULL);
 
-		if (ptr != NULL)
-			for (i = new_size; i < old_size; i++)
-				free(ptr[i]);
+		free(ptr);
 	}
 
 	return (ptr);
