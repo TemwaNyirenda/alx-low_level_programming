@@ -15,7 +15,6 @@ int _strlen(char *str);
 dog_t *new_dog(char *name, float age, char *owner)
 {
 	dog_t *dog;
-	char *name_copy, *owner_copy;
 
 	if (name == NULL || owner == NULL)
 		return (NULL);
@@ -24,24 +23,20 @@ dog_t *new_dog(char *name, float age, char *owner)
 	if (dog == NULL)
 		return (NULL);
 
-	name_copy = malloc(sizeof(char) * (_strlen(name) + 1));
-	if (name == NULL)
+	dog->name = malloc(sizeof(char) * (_strlen(name) + 1));
+	if (dog->name == NULL)
 	{
 		free(dog);
 		return (NULL);
 	}
 
-	name_copy = name;
-
-	owner_copy = malloc(sizeof(char) * (_strlen(name) + 1));
-	if (owner == NULL)
+	dog->owner = malloc(sizeof(char) * (_strlen(name) + 1));
+	if (dog->owner == NULL)
 	{
 		free(dog);
-		free(name_copy);
+		free(dog->name);
 		return (NULL);
 	}
-
-	owner_copy = owner;
 
 	dog->name = name_copy;
 	dog->age = age;
