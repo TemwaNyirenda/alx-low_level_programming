@@ -2,6 +2,8 @@
 #include <stddef.h>
 #include <stdlib.h>
 
+int _strlen(char *str);
+
 /**
  * new_dog - creates a new struct dog
  * @name: 1st member of struct dog
@@ -13,22 +15,43 @@
 dog_t *new_dog(char *name, float age, char *owner)
 {
 	dog_t *dog;
+	char *name_copy, *owner_copy;
 
 	dog = malloc(sizeof(dog_t));
 	if (dog == NULL)
 		return (NULL);
 
-	name = malloc(sizeof(name));
+	name_copy = malloc(sizeof(char) * _strlen(name));
 	if (name == NULL)
 		return (NULL);
 
-	owner = malloc(sizeof(owner));
+	name_copy = name;
+
+	owner_copy = malloc(sizeof(owner) * _strlen(name));
 	if (owner == NULL)
 		return (NULL);
 
-	dog->name = name;
+	owner_copy = owner;
+
+	dog->name = name_copy;
 	dog->age = age;
-	dog->owner = owner;
+	dog->owner = owner_copy;
 
 	return (dog);
+}
+
+/**
+ * _strlen - calculates the length of a string
+ * @str: the string used in the calculation
+ *
+ * Return: the length of the string
+ */
+int _strlen(char *str)
+{
+	int i;
+
+	for (i = 0; str[i] != '\0'; i++)
+		;
+
+	return (i);
 }
