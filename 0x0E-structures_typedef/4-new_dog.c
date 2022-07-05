@@ -3,6 +3,7 @@
 #include <stdlib.h>
 
 int _strlen(char *str);
+char *_strcpy(char *dest, char *src);
 
 /**
  * new_dog - creates a new struct dog
@@ -38,9 +39,9 @@ dog_t *new_dog(char *name, float age, char *owner)
 		return (NULL);
 	}
 
-	dog->name = name;
+	_strcpy(dog->name, name);
 	dog->age = age;
-	dog->owner = owner;
+	_strcpy(dog->owner, owner);
 
 	return (dog);
 }
@@ -59,4 +60,25 @@ int _strlen(char *str)
 		;
 
 	return (i);
+}
+
+/**
+ * _strcpy - copies a string
+ *
+ * Description: copies string pointed to by src, including null terminator,
+ * to the buffer pointed to by dest
+ * @src: pointer pointing to original string
+ * @dest: pointer that copies string onto buffer
+ *
+ * Return: the copied string
+ */
+char *_strcpy(char *dest, char *src)
+{
+	int index;
+
+	for (index = 0; *(src + index) != '\0'; index++)
+		*(dest + index) = *(src + index);
+	*(dest + index) = '\0';
+
+	return (dest);
 }
