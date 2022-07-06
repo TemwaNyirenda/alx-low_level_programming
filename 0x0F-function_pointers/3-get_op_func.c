@@ -1,8 +1,5 @@
 #include "3-calc.h"
-#include <stddef.h>
-#include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 /**
  * get_op_func - pointer to a function. Function is determined by string s
