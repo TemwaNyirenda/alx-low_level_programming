@@ -7,7 +7,6 @@ void print_int(va_list vargs);
 void print_float(va_list vargs);
 void print_str(va_list vargs);
 
-
 /**
  * print_all - prints according to type indicated by string format
  * @format: const string used to show type of upcoming variable arguments
@@ -31,7 +30,7 @@ void print_all(const char * const format, ...)
 	while (format[i] != '\0' && format)
 	{
 		j = 0;
-		while (j < 5)
+		while (j < 4)
 		{
 			if (format[i] == choice[j].format[0])
 			{
@@ -81,7 +80,7 @@ void print_float(va_list vargs)
 }
 
 /**
- * print_string - prints a string
+ * print_str - prints a string
  * @vargs: pointer to current position in va_list
  *
  * Return: nothing (void)
