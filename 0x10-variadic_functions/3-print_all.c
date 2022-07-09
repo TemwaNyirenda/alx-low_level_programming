@@ -99,9 +99,7 @@ void print_str(va_list vargs)
 	if (str == NULL)
 	{
 		printf("(nil)");
+		return;
 	}
-	else
-	{
-		printf("%s", str);
-	}
+	printf("%s", str);
 }
