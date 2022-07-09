@@ -6,17 +6,7 @@ void print_char(va_list vargs);
 void print_int(va_list vargs);
 void print_float(va_list vargs);
 void print_str(va_list vargs);
-/**
- * struct type - struct used to print according to type indicated
- * @format: used to indicate what type to print
- * @f: the function used to print that type
- */
-typedef struct type
-{
-	char *format;
-	void (*f)(va_list vargs);
 
-} types;
 
 /**
  * print_all - prints according to type indicated by string format
@@ -38,10 +28,10 @@ void print_all(const char * const format, ...)
 
 	va_start(vargs, format);
 
-	while (format[i] != '\0')
+	while (format[i] != '\0' && format)
 	{
 		j = 0;
-		while (j < 4)
+		while (j < 5)
 		{
 			if (format[i] == choice[j].format[0])
 			{
@@ -54,10 +44,11 @@ void print_all(const char * const format, ...)
 		i++;
 	}
 	printf("\n");
+	va_end(vargs);
 }
 
 /**
- * print_char: prints a char
+ * print_char - prints a char
  * @vargs: pointer to current position in va_list
  *
  * Return: nothing (void)
@@ -68,7 +59,7 @@ void print_char(va_list vargs)
 }
 
 /**
- * print_int: prints a float
+ * print_int - prints a float
  * @vargs: pointer to current position in va_list
  *
  * Return: nothing (void)
@@ -77,18 +68,20 @@ void print_int(va_list vargs)
 {
 	printf("%d", va_arg(vargs, int));
 }
+
 /**
- * print_float: prints a float
+ * print_float - prints a float
  * @vargs: pointer to current position in va_list
- * 
+ *
  * Return: nothing (void)
  */
 void print_float(va_list vargs)
 {
 	printf("%f", va_arg(vargs, double));
 }
+
 /**
- * print_string: prints a string
+ * print_string - prints a string
  * @vargs: pointer to current position in va_list
  *
  * Return: nothing (void)
@@ -96,6 +89,7 @@ void print_float(va_list vargs)
 void print_str(va_list vargs)
 {
 	char *str = va_arg(vargs, char *);
+
 	if (str == NULL)
 	{
 		printf("(nil)");
