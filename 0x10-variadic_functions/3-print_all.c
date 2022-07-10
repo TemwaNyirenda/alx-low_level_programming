@@ -15,27 +15,25 @@ void print_str(va_list vargs);
  */
 void print_all(const char * const format, ...)
 {
-	types choice[] = {
-		{"c", print_char},
-		{"i", print_int},
-		{"f", print_float},
-		{"s", print_str}
-	};
+
+	char *choice_format[4] = {"c", "i", "f", "s"};
+	void (*choice_func[4])() = {print_char, print_int, print_float,
+		print_str};
 	int i = 0, j = 0;
 	va_list vargs;
 	char *separator = "";
 
 	va_start(vargs, format);
 
-	while (format[i] != '\0' && format)
+	while (format[i] != '\0' && format != NULL)
 	{
 		j = 0;
 		while (j < 4)
 		{
-			if (format[i] == choice[j].format[0])
+			if (format[i] == choice_format[j][0])
 			{
 				printf("%s", separator);
-				choice[j].f(vargs);
+				choice_func[j](vargs);
 				separator = ", ";
 			}
 			j++;
