@@ -1,5 +1,5 @@
 global main
-extern printf, scanf
+extern printf
 
 section .text
 main:
